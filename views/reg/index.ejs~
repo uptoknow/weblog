@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title><%= title %> Web Blog</title>
+<link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+<script src="/javascripts/jquery-1.11.0.js"></script>
+<script src="/javascripts/bootstrap.js"></script>
+<style type="text/css">
+body {
+padding-top: 60px;
+padding-bottom: 40px;
+}
+</style>
+<link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">
+</head>
+<script>
+$(function(){
+  $("#username").focus(function(){
+     $("#username").attr("value","");
+  });
+  $("#username").blur(function() {
+     if($("#username").attr("value") ==""){
+        $("#username").attr("value","Enter your name here");
+     } 
+     // add ajax event to check the username is already registered or not.
+	
+  });
+  $('#password').popover({
+	trigger:'manual',
+	title:'password rule:',
+	content:"Your password rule should contains at leat one number,one lower case letter,one captical case letter and at least 5 charactors"
+  });
+  $("#password").focus(function(){
+    $('#password').popover('hide');
+  });
+  $( "#password").blur(function(){
+    var pass = $("#password").val();
+    var strength = 1;
+    var arr = [/.{5,}/, /[a-z]+/, /[0-9]+/, /[A-Z]+/];
+    jQuery.map(arr, function(regexp) {
+      if(pass.match(regexp)){
+       strength++;  
+       //console.log("match:"+regexp);      
+      }
+    });
+    console.log(strength);
+    if(strength<5){
+        $('#password').popover('show');
+	//$("#passPro").text("Please check your passsword style.");
+    }
+     //check the password whether or strong or not.
+  });
+$("#passwordrepeat").popover({
+trigger:'manual',
+title:'password rule:',
+content:"Your password are not same,please try again."
+});
+
+  $("#passwordrepeat").blur(function(){
+     //check if the repeat password match the the password or not
+     var pass = $("#password").val();
+     var repass = $("#passwordrepeat").val();
+     if(pass!=repass){
+   	$("#passwordrepeat").popover("show");
+     }
+  });
+});
+
+</script>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner">
+<div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</a>
+<a class="brand" href="/">Microblog</a>
+<div class="nav-collapse">
+<ul class="nav">
+<li class="active"><a href="/">HOME</a></li>
+<li><a href="/login">LOGIN</a></li>
+<li><a href="/reg">REGISTER</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="container" class="container">
+<form class="form-horizontal" method="post" action="/reg">
+<fieldset>
+<legend>Register</legend>
+<div class="control-group">
+<label class="control-label" for="username">username</label>
+<div class="controls">
+<input type="text" class="input-xlarge" id="username" name="username" value="Enter your name here" >
+<span id = "userPro"></span>
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="password">password</label>
+<div class="controls">
+<input type="password" class="input-xlarge" id="password" name="password">
+<span id = "passPro"></span>
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="passwordrepeat">repeat</label>
+<div class="controls">
+<input type="password" class="input-xlarge" id="passwordrepeat"
+name="passwordrepeat">
+</div>
+<div id = "rePassPro">
+</div>
+</div>
+<div class="form-actions">
+<button type="submit" class="btn btn-primary">register</button>
+</div>
+</fieldset>
+</form>
+<hr />
+<footer>
+<p><a href="http://www.byvoid.com/" target="_blank">BYVoid</a> 2012</p>
+</footer>
+</div>
+</body>
+
+</html>
