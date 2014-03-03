@@ -6,6 +6,7 @@
 <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
 <script src="/javascripts/jquery-1.11.0.js"></script>
 <script src="/javascripts/bootstrap.js"></script>
+<script src="/javascripts/reg/reg.js"></script>
 <style type="text/css">
 body {
 padding-top: 60px;
@@ -14,63 +15,6 @@ padding-bottom: 40px;
 </style>
 <link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">
 </head>
-<script>
-$(function(){
-  $("#username").focus(function(){
-     $("#username").attr("value","");
-  });
-  $("#username").blur(function() {
-     if($("#username").attr("value") ==""){
-        $("#username").attr("value","Enter your name here");
-     } 
-     // add ajax event to check the username is already registered or not.
-	
-  });
-  $('#password').popover({
-	trigger:'manual',
-	title:'password rule:',
-	content:"Your password rule should contains at leat one number,one lower case letter,one captical case letter and at least 5 charactors"
-  });
-  $("#password").focus(function(){
-    $('#password').popover('hide');
-  });
-  $( "#password").blur(function(){
-    var pass = $("#password").val();
-    var strength = 1;
-    var arr = [/.{5,}/, /[a-z]+/, /[0-9]+/, /[A-Z]+/];
-    jQuery.map(arr, function(regexp) {
-      if(pass.match(regexp)){
-       strength++;  
-       //console.log("match:"+regexp);      
-      }
-    });
-    console.log(strength);
-    if(strength<5){
-        $('#password').popover('show');
-	//$("#passPro").text("Please check your passsword style.");
-    }
-     //check the password whether or strong or not.
-  });
-$("#passwordrepeat").popover({
-trigger:'manual',
-title:'password rule:',
-content:"Your password are not same,please try again."
-});
-
-  $("#passwordrepeat").blur(function(){
-     //check if the repeat password match the the password or not
-     var pass = $("#password").val();
-     var repass = $("#passwordrepeat").val();
-     if(pass!=repass){
-   	$("#passwordrepeat").popover("show");
-     }
-  });
-  $("#passwordrepeat").focus(function(){
-     $("#passwordrepeat").popover("hide");
-  });
-});
-
-</script>
 <body>
 <div class="navbar navbar-fixed-top">
 <div class="navbar-inner">
@@ -98,7 +42,7 @@ content:"Your password are not same,please try again."
 <div class="control-group">
 <label class="control-label" for="username">username</label>
 <div class="controls">
-<input type="text" class="input-xlarge" id="username" name="username" value="Enter your name here" >
+<input type="text" class="input-xlarge" id="username" name="username" >
 <span id = "userPro"></span>
 </div>
 </div>
@@ -114,12 +58,12 @@ content:"Your password are not same,please try again."
 <div class="controls">
 <input type="password" class="input-xlarge" id="passwordrepeat"
 name="passwordrepeat">
+<span id = "rePassPro"></span>
 </div>
-<div id = "rePassPro">
 </div>
 </div>
 <div class="form-actions">
-<button type="submit" class="btn btn-primary">register</button>
+<button id = "register" type="submit" class="btn btn-primary" disabled>register</button>
 </div>
 </fieldset>
 </form>
