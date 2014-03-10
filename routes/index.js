@@ -3,23 +3,23 @@
  * GET home page.
  */
 
-var User = require('../models/user');
+var User = require('../modules/user');
 module.exports = function(app){
 	app.get('/', function(req, res){
 		
-  	res.render('index', { title: 'Express' });
+  	res.render('index.ejs', { title: 'Express' });
 	});	
-	app.get('/reg',function(req,res){
+	app.get('/reg1',function(req,res){
 		res.charset = 'UTF-8';
-        res.render('reg', { title: 'Express' });
+        res.render('reg.ejs', { title: 'Express' });
 	});
-	app.post('/reg',function(req,res){
+	app.post('/reg1',function(req,res){
 		console.log(req.body);
 		if(req.body.passwordrepeat != req.body.password){
 			res.render('reg', { error: 'Passsword are not same.',
 													title: 'blog'
 				 });
-			return res.redirect('/reg');	
+			return res.redirect('/reg.ejs');	
 		}	;
 		var crypto = require('crypto');
 		var md5 = crypto.createHash('md5');
@@ -32,15 +32,15 @@ module.exports = function(app){
 		User.get(newuser.name,function(err,user){
 			if(user){
 				err = 'User already exists.';
-				return res.render('reg',{title:'regiser failed.'});	
+				return res.render('reg.ejs',{title:'regiser failed.'});	
 			}else{
 				newuser.save(function(err){
 					if(err){
 					  //res.send('error',err);
-					  return res.render('reg',{title:'regiser sucess.'});	
+					  return res.render('reg.ejs',{title:'regiser sucess.'});	
 					}	else{
 						req.session.user = newuser;
-						return res.render('index',{title:'register failed.'});
+						return res.render('index.ejs',{title:'register failed.'});
 					}		
 				});	
 			}

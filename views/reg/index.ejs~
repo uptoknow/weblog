@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title><%= title %> Web Blog</title>
+<link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+<script src="/javascripts/jquery-1.11.0.js"></script>
+<script src="/javascripts/bootstrap.js"></script>
+<script src="/javascripts/reg/reg.js"></script>
+<style type="text/css">
+body {
+padding-top: 60px;
+padding-bottom: 40px;
+}
+</style>
+<link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner">
+<div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</a>
+<a class="brand" href="/">Microblog</a>
+<div class="nav-collapse">
+<ul class="nav">
+<li class="active"><a href="/">HOME</a></li>
+<li><a href="/login">LOGIN</a></li>
+<li><a href="/reg">REGISTER</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="container" class="container">
+<form class="form-horizontal" method="post" action="/reg">
+<fieldset>
+<legend>Register</legend>
+<div class="control-group">
+<label class="control-label" for="username">username</label>
+<div class="controls">
+<input type="text" class="input-xlarge" id="username" name="username" >
+<span id = "userPro"></span>
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="password">password</label>
+<div class="controls">
+<input type="password" class="input-xlarge" id="password" name="password">
+<span id = "passPro"></span>
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="passwordrepeat">repeat</label>
+<div class="controls">
+<input type="password" class="input-xlarge" id="passwordrepeat"
+name="passwordrepeat">
+<span id = "rePassPro"></span>
+</div>
+</div>
+</div>
+<div class="form-actions">
+<button type="submit" class="btn btn-primary" disabled>register</button>
+</div>
+</fieldset>
+</form>
+<hr />
+<footer>
+<p><a href="http://www.byvoid.com/" target="_blank">BYVoid</a> 2012</p>
+</footer>
+</div>
+</body>
+
+</html>
